@@ -27,8 +27,14 @@ public class MainMenu {
                 case 2:
                     showDeleteForm();
                     break;
+                case 3:
+                    showFormEdit();
+                    break;
                 case 5:
                     showAll();
+                    break;
+                case 6:
+                    showMenuSearchContainsName();
                     break;
                 default:
                     System.out.println("Ko có lựa chọn này!");
@@ -53,15 +59,13 @@ public class MainMenu {
 
     public void showFormAdd() {
         System.out.println("----------- Thêm mới sinh viên -----------");
-        System.out.println("Nhập ID: ");
-        int id = this.inputNumber.nextInt();
         System.out.println("Nhập Name: ");
         String name = this.inputString.nextLine();
         System.out.println("Nhập tuổi: ");
         int age = this.inputNumber.nextInt();
         System.out.println("Nhập điểm: ");
         double score = this.inputNumber.nextDouble();
-        Student newStudent = new Student(id, name, age, score);
+        Student newStudent = new Student(name, age, score);
         this.studentManager.add(newStudent);
         System.out.println("Thêm mới sinh viên thành công");
     }
@@ -73,14 +77,48 @@ public class MainMenu {
         System.out.println("3.Sửa thông tin sinh viên");
         System.out.println("4.Tìm kiếm sinh viên theo id");
         System.out.println("5.Hiển thị tất cả sinh viên");
+        System.out.println("6.Tìm kiếm theo tên");
         System.out.println("0.Thoát chương trình");
         System.out.println("======= Vui lòng nhập lựa chọn của bạn =====>");
+    }
+
+    public void showFormEdit() {
+        System.out.println("------- Sửa sinh viên --------------");
+        System.out.println("Nhập Id sinh viên cần sửa: ");
+        int id = inputNumber.nextInt();
+        Student studentChecked = studentManager.findById(id);
+        if(studentChecked == null) {
+            System.out.println("Không tồn tại sinh viên");
+            return;
+        }
+        System.out.println("Nhập tên: ");
+        String name = inputString.nextLine();
+        System.out.println("Nhập tuổi");
+        int age = inputString.nextInt();
+        System.out.println("Nhập điểm: ");
+        double score = inputNumber.nextDouble();
+        studentChecked.setName(name);
+        studentChecked.setAge(age);
+        studentChecked.setScore(score);
+        studentManager.update(id, studentChecked);
+        System.out.println("Cập nhật thành công.");
+    }
+
+    public void showMenuSearchContainsName() {
+        System.out.println("---------- Search name ------------");
+        System.out.println("Nhập tên cần tìm: ");
+        String input = inputString.nextLine();
+        List<Student> listData = studentManager.findStudentByContainsName(input);
+        System.out.println("---------- Danh sách  -------------");
+        for (Student student : listData) {
+            System.out.println(student);
+        }
     }
 
     // Id tự tăng (Không cho người dùng nhập)
     // edit
     // tìm sinh viên theo id
-    // tìm sinh viên theo tên gần đúng đúng
+    // tìm sinh viên theo tên gần đúng
     // tìm sinh viên theo khoảng điểm
 
     // Quản lý thư viện

@@ -5,9 +5,12 @@ public class Student {
     private String name;
     private int age;
     private double score;
+    private static int count = 1000;
 
-    public Student(int id, String name, int age, double score) {
-        this.id = id;
+    public Student(String name, int age, double score) {
+        this.id = count++; // 1001
+        // gán và tăng giá trị
+        // gán trước và tăng sau;
         this.name = name;
         this.age = age;
         this.score = score;
