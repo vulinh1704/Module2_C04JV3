@@ -2,25 +2,28 @@ package management;
 
 import model.Student;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class StudentManager implements IManager<Student> {
-    private List<Student> list;
+    private Map<Integer, Student> studentMap;
 
     public StudentManager() {
-        this.list = new ArrayList<>();
+        this.studentMap = new HashMap<>();
     }
 
     @Override
     public void add(Student newStudent) {
-        this.list.add(newStudent);
+        this.studentMap.put(newStudent.getId(), newStudent);
+    }
+
+    public boolean isExist(int id) {
+        return this.studentMap.containsKey(id);
     }
 
     public List<Student> findStudentByContainsName(String input) { // "H"
+        List<Student> listAll = this.findAll();
         List<Student> listData = new ArrayList<>();
-        for (Student s : list) {
+        for (Student s : listAll) {
             String name = s.getName().toLowerCase(); // "Hưng  Hà hạ"
             input = input.toLowerCase();
             if (name.contains(input)) {
@@ -32,45 +35,23 @@ public class StudentManager implements IManager<Student> {
 
     @Override
     public void update(int id, Student newStudent) {
-        int editIndex = this.findIndexById(id);
-        if (editIndex == -1) {
-            System.out.println("Không tìm thấy sinh viên này");
-            return;
-        }
-        this.list.set(editIndex, newStudent);
+        this.studentMap.put(id, newStudent);
     }
 
     @Override
     public void delete(int id) {
-        int deleteIndex = this.findIndexById(id);
-        if (deleteIndex == -1) {
-            System.out.println("Không tìm thấy sinh viên này");
-            return;
-        }
-        this.list.remove(deleteIndex);
-        System.out.println("Xóa thành công!");
+        this.studentMap.remove(id);
     }
 
     @Override
     public List<Student> findAll() {
-        return this.list;
+        Collection<Student> students = studentMap.values(); // Collection
+        return new ArrayList<>(students);
     }
 
     @Override
     public Student findById(int id) {
-        int index = this.findIndexById(id); // -1
-        if (index == -1) return null;
-        Student studentFound = this.list.get(index);
-        return studentFound;
-    }
-
-    private int findIndexById(int id) {
-        for (int i = 0; i < this.list.size(); i++) {
-            Student s = this.list.get(i);
-            if (s.getId() == id) {
-                return i;
-            }
-        }
-        return -1;
+        return this.studentMap.get(id);
     }
 }
+

@@ -46,7 +46,12 @@ public class MainMenu {
         System.out.println("-------------- Xóa thông tin sinh viên --------------");
         System.out.println("Nhập id sinh viên cần xóa: ");
         int id = this.inputNumber.nextInt();
-        this.studentManager.delete(id);
+        boolean isExist = studentManager.isExist(id);
+        if (isExist) {
+            this.studentManager.delete(id);
+        } else {
+            System.out.println("Không tìm thấy sinh viên này");
+        }
     }
 
     public void showAll() {
@@ -87,7 +92,7 @@ public class MainMenu {
         System.out.println("Nhập Id sinh viên cần sửa: ");
         int id = inputNumber.nextInt();
         Student studentChecked = studentManager.findById(id);
-        if(studentChecked == null) {
+        if (studentChecked == null) {
             System.out.println("Không tồn tại sinh viên");
             return;
         }
@@ -121,5 +126,29 @@ public class MainMenu {
     // tìm sinh viên theo tên gần đúng
     // tìm sinh viên theo khoảng điểm
 
-    // Quản lý thư viện
+    // Quản lý thư viện => Quản lý sách (Tương tự demo)
+
+    // Nâng cao: Sách thì có thể có nhiều loại sách (Category)
+    // Mỗi sách thì sẽ thuộc 1 category nào đó
+    // Category cũng có quản lý riêng
 }
+
+
+/*
+    class Category {
+    int idCate;
+    String nameCate;
+    String nameUserCreated;
+    }
+    ==> Có manager
+
+    class Book {
+    int id;
+    String name;
+    String author;
+    ...
+    int categoryId
+    }
+    => Có manager
+
+ */
