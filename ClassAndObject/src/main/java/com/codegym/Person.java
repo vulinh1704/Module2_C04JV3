@@ -13,8 +13,18 @@ public class Person { // tên class để public thì phải trùng tên file
     Person() {
     }
 
+
+    double method(int x) {
+        if (x > 5) {
+            return 3;
+        }
+        return 1;
+    }
+
     Person(String name, int age) {
-        this.name = name; // this sẽ đại diện cho đối tượng được sinh ra
+
+//        this.name = name; // this sẽ đại diện cho đối tượng được sinh ra
+        this(name);// gọi đến constructor có tham số tương ứng
         this.age = age;
     }
 
@@ -27,9 +37,18 @@ public class Person { // tên class để public thì phải trùng tên file
         // this ở đây đại diện cho đối tượng đang gọi hàm
     }
 
+
+    void study(String name) {
+        System.out.println(this.name + " is studying");
+        this.getYearOfBirth();
+        // this ở đây đại diện cho đối tượng đang gọi hàm
+    }
+
     int getYearOfBirth() {
         // Logic
         int year = 1993;
+        String name = "test";
+        System.out.println(this.name);
         return year;
     }
 }

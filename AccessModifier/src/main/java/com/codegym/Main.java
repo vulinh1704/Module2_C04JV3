@@ -18,15 +18,35 @@ public class Main {
 //        System.out.println(student.name);
 //        System.out.println(student.age);
 //        student.go();
+//
+//        Teacher teacher = new Teacher(1, "Linh");
+//        teacher.setName("Phú");
+//        System.out.println(teacher.getName());
+//
+//        Teacher teacher1 = new Teacher(2, "Hải");
+//        System.out.println(teacher1.getName());
+//
+//        System.out.println(Teacher.nameSchool);
+//        Teacher.goToWork();
 
-        Teacher teacher = new Teacher(1, "Linh");
-        teacher.setName("Phú");
-        System.out.println(teacher.getName());
 
-        Teacher teacher1 = new Teacher(2, "Hải");
-        System.out.println(teacher1.getName());
+        // Chữa bài
+        Circle circle = new Circle(4.1);
+        System.out.println("Id circle 1: " + circle.getId());
+        System.out.println("C1 = " + circle.getC());
+        System.out.println("S1 = " + circle.getS());
+        System.out.println("Max radius " + Circle.maxRadius);
 
-        System.out.println(Teacher.nameSchool);
-        Teacher.goToWork();
+        Circle circle02 = new Circle(4.2);
+        System.out.println("Id circle 2: " + circle02.getId());
+        Circle circle03 = new Circle(3.3);
+        System.out.println("Id circle 3: " + circle03.getId());
+        System.out.println("Max radius " + Circle.maxRadius);
+        System.out.println("Total S = " + Circle.totalS);
+
+
+
+
+
     }
 }

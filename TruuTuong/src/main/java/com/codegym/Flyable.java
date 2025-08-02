@@ -7,6 +7,8 @@ public interface Flyable {
     String bay();
 
     String haCanh(String name);
+
+    void run();
 }
 
 

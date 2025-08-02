@@ -1,11 +1,15 @@
 package bai_hoc;
 
+
+
 public class Teacher {
     private int id; // of object
     private String name; // để truy xuất thuộc tính private phải thông qua hàm public (get/set)
+
     // get: lấy
     // set: sửa
     public static String nameSchool = "CodeGym";
+    // static là từ khóa khai báo dữ liệu ( thuôc tính hoặc phương thức) cho CLASS
 
     public Teacher() {
     }
@@ -16,11 +20,12 @@ public class Teacher {
     }
 
     public static void goToWork() {
+        // k thể gọi non-static vào trong static
         System.out.println("Đến codegym");
         System.out.println(nameSchool); // phương thức static thì có thể truy cập thuộc tính static
     }
 
-    public int getId() {
+    public int getId() { // non-static
         return this.id;
     }
 

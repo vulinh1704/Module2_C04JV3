@@ -1,6 +1,6 @@
 package com.codegym;
 
-public class Person {
+public class Person extends Object {
     private String name;
 
     public Person(String name) {
@@ -20,5 +20,11 @@ public class Person {
 
     public void sing(String songName) {
         System.out.println("Người hát " + songName);
+    }
+
+    @Override
+    public String toString() {
+        System.out.println();
+        return "Sb";
     }
 }

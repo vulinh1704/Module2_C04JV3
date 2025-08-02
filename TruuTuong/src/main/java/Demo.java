@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public class Demo<T>{ // generic
+    T t;
+    String name;
 
-public class Demo {
+    void add(T var) {
+
+    }
 }
+
+
+// T: tương tự như tham số của hàm nhưng dành cho KIÊỦ DỮ LIỆU
