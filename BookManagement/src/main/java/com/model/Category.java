@@ -6,14 +6,13 @@ public class Category {
     private Long id;
     private String name;
     private String description;
-    private static Long countId = 1000L;
 
-    public Category(String name, String description) {
-        this.id = countId;
+    public Category(Long id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
-        countId++;
     }
+
 
     public Long getId() {
         return id;

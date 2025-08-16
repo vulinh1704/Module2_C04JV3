@@ -1,27 +1,30 @@
 package com.management;
-
+import com.dto.CategoryDatabase;
 import com.model.Category;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class CategoryManagement implements IManagement<Category> {
     private List<Category> list;
+    private CategoryDatabase categoryDatabase = new CategoryDatabase();
+
+    // Get ra thì gọi read, thay đổi data thì gọi write
 
     public CategoryManagement() {
-        this.list = new ArrayList<>();
+        this.list = categoryDatabase.readData();
     }
 
     @Override
     public void add(Category category) {
         this.list.add(category);
+        categoryDatabase.writeData(this.list);
     }
 
     @Override
     public void delete(Long id) throws Exception {
         int index = this.findIndexById(id);
         this.list.remove(index);
+        categoryDatabase.writeData(this.list);
     }
 
     @Override
@@ -30,6 +33,7 @@ public class CategoryManagement implements IManagement<Category> {
         Category oldData = this.findById(id);
         newCategory.setId(oldData.getId());
         this.list.set(index, newCategory);
+        categoryDatabase.writeData(this.list);
     }
 
     @Override
@@ -54,3 +58,6 @@ public class CategoryManagement implements IManagement<Category> {
         throw new Exception("Data not found");
     }
 }
+
+// database (thong dung 99%) ban chat la file => he quan trị csdl (dùng câu lệnh để tung tác với database_
+// or file text (qua trinh hoc)

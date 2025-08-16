@@ -71,11 +71,13 @@ public class MainMenu {
 
     public void showFormAddCategory() {
         System.out.println("---------- Add Category Menu --------");
+        System.out.println("Nhâ id: ");
+        Long id = (long) Input.inputInt();
         System.out.println("Nhập tên: ");
         String name = Input.inputString();
         System.out.println("Nhập mô tả: ");
         String description = Input.inputString();
-        Category newCategory = new Category(name, description);
+        Category newCategory = new Category(id, name, description);
         this.categoryManagement.add(newCategory);
         System.out.println("Thêm loại thành công");
     }
